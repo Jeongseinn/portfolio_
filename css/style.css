@@ -1,0 +1,685 @@
+
+@font-face {
+	font-family: 'Pretendard';
+	src: url(/font/Pretendard/Pretendard-Regular.woff) format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Pretendard';
+	src: url(/font/Pretendard/Pretendard-Bold.woff) format('woff');
+	font-weight: 700;
+	font-style: normal;
+}
+
+
+
+
+.roboto{
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+/* 1. Reset (기본 스타일 제거) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. 기본 폰트 & 배경 */
+html, body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background-color: #111;
+  color: #ffffff;
+  line-height: 1.8;
+}
+
+html {
+  font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+body {
+  font-size: 1.6rem;
+      word-break: keep-all;
+       margin: 0;
+}
+
+/* 3. 이미지 */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 4. 링크 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 5. 리스트 */
+ul, ol {
+  list-style: none;
+}
+
+
+/* 7. 입력창 */
+input, textarea {
+  font: inherit;
+  border: none;
+  outline: none;
+}
+
+
+section{
+  margin: 0 2rem;
+  border-bottom: 1px solid #ffffff12;
+}
+
+
+
+/* -------------------------------------------------- */
+
+
+header h1, footer h1{
+font-size: 21.7vw;
+    line-height: 1;
+   letter-spacing: -0.04em;
+      font-weight: 700;
+       white-space: nowrap; 
+    overflow: hidden;
+}
+
+header h1{
+  margin: 0;
+}
+
+footer h1 {
+  margin: 0;
+}
+
+footer {
+  overflow: hidden;
+}
+
+header .nav{
+  display: flex;
+  justify-content: space-between;
+ padding: 2rem 2rem 0;
+    width: 100%;
+}
+
+
+
+header .nav li a{
+  display: block;
+   font-size:1.6rem ;
+   padding: 1rem 1.5rem;
+   line-height: 1;
+   border: 1px solid #ffffff;
+   border-radius: 5rem;
+     font-family: "Roboto Condensed", sans-serif;
+}
+
+.nav.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+
+.index_wrap header h1 {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: fadeDown 1s ease forwards;
+}
+
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.index_wrap header .nav,  .work {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.5s; /* h1 끝나고 나오게 */
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+.work_wrap header .nav {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: fadeDown 1s ease forwards;
+}
+
+.work_wrap  #contact{
+  margin-top:10rem;
+}
+
+
+/* -------------------------------------------------- */
+
+
+
+
+.work .top_txt_wrap{
+  margin: 20rem 0;
+  padding-left: 50%;
+}
+
+.work h2.roboto{
+  font-size: 6rem;
+}
+.work .work_list {
+  display: flex;
+  gap: 12rem 3rem;
+  flex-wrap: wrap;
+}
+
+.work .work_list .work_cont {
+  width: calc((100% - 3rem) / 2);
+  position: relative;
+  cursor: none !important; 
+}
+
+.work .work_list .work_cont .product_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 1rem;
+}
+
+.work .work_list .work_cont .product_info .product_name {
+  font-size: 2.4rem;
+  font-weight: 700;
+      line-height: 1;
+}
+
+.work .work_list .work_cont .product_info .tag {
+  display: flex;
+  gap: 1rem;
+}
+
+.work .work_list .work_cont .product_info .tag li {
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 0.5rem 1rem;
+  background-color: #ffffff;
+  border-radius: 3px;
+  color: #111;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+.work .work_list .work_cont .product_img {
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+
+
+/* -------------------------------------------------- */
+
+
+
+
+.work .work_list .work_cont .detail_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: #0000007c;
+  backdrop-filter: blur(10px);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+
+.work .work_list .work_cont:hover .detail_wrap {
+  opacity: 1;
+  visibility: visible;
+}
+
+.work .work_list .work_cont .product_img .detail_wrap li {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff12;
+  padding: 0.3rem 0;
+}
+
+.work .work_list .work_cont .product_img .detail_wrap li p {
+  font-size: 1.8rem;
+}
+
+.work .work_list .work_cont .product_img .detail_wrap li p:nth-child(1) {
+  font-weight: 700;
+}
+
+.work .work_btn_wrap {
+    padding-left: 50%;
+      margin-left: auto;
+}
+
+.work .work_btn_wrap a {
+   display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 6.3vw;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+
+.work .work_btn_wrap a img {
+  height: 0.9em;
+  width: auto;
+  display: block;
+}
+
+
+.work .work_btn_wrap a:hover {
+    gap: 2rem;
+}
+/* -------------------------------------------------- */
+
+
+
+.custom_cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 15rem;
+  pointer-events: none; 
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+transition: opacity 0.4s ease;
+  margin-left: -7.5rem;
+  margin-top: -7.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* JS에 의해 .on 클래스가 붙을 때만 표시 */
+.custom_cursor.on {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* [커서 배경] 무한 회전 애니메이션 */
+.cursor_bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.cursor_bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: rotate_cursor 10s linear infinite;
+}
+
+/* [커서 화살표] 회전하지 않고 고정 */
+.cursor_arrow {
+  position: relative;
+  width: 2rem; /* 화살표 크기 */
+  z-index: 10;
+}
+
+.cursor_arrow img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* 회전 애니메이션 정의 */
+@keyframes rotate_cursor {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+/* -------------------------------------------------- */
+
+
+
+.f_box{display: flex;
+  flex-wrap: wrap;
+  padding: 10rem 0;
+}
+
+.f_box .section_title{
+  width: 50%;
+  font-weight: 700;
+}
+
+.f_box .content{
+  width: 50%;
+}
+
+
+/* -------------------------------------------------- */
+
+
+
+#about_me .content .txt_p{
+ max-width: 50rem;
+}
+
+#about_me .content .photo{
+  display: flex;
+  gap: 2rem;
+  align-items: end;
+  margin-top: 10rem;
+}
+
+#about_me .content .number{
+  display: flex;
+  gap: 20%;
+  margin-top: 4rem;
+}
+
+
+
+#about_me .content .number .roboto{
+font-size: 8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+#about_me .content .number .roboto span{
+font-size: 1.8rem;
+    font-weight: 400;
+    padding-left: 0.5rem;
+}
+
+
+/* -------------------------------------------------- */
+
+
+#cando .content{
+  display: flex;
+  flex-direction: column;
+align-items: stretch;
+}
+#cando .content li{
+ border-bottom: 1px solid #ffffff12;
+ font-size: 4rem;
+ position: relative;
+}
+
+#cando .content li::before{
+  display: block;
+  position: absolute;
+  content: "";
+  width: 0.5rem;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: #ffffff;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+#cando .content li:nth-child(odd){opacity: 0.7;}
+
+#experience table td{
+  border-bottom: 1px solid #ffffff12;
+  width: 33%;
+  padding: 1rem 0;
+}
+
+
+section#contact{
+  border-bottom: none;
+}
+
+#contact .top_txt_wrap{
+  padding: 10rem 0 10rem 50% ;
+}
+
+#contact h2.roboto{
+  font-size: 6rem;
+}
+
+#contact p.txt_p{
+  font-size: 1.8rem;
+      line-height: 1.6;
+}
+
+
+#contact .contact_info{
+  margin-top: 8rem;
+}
+
+#contact .contact_info li{
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+#contact .contact_info li p{
+line-height: 1;
+}
+
+#contact .contact_info li p:nth-child(1){
+  min-width: 10rem;
+    font-family: "Roboto Condensed", sans-serif;
+        font-weight: 700;
+}
+
+#contact .contact_info li p img{
+      max-width: 20rem;
+  border-radius: 1rem;
+  display: block;
+}
+
+
+/* -------------------------------------------------- */
+
+
+.reveal-container {
+    overflow: hidden;
+    display: block;
+}
+
+.reveal-text {
+    display: block;
+    /* 초기 위치는 GSAP에서 잡아줄 거라 여기서 안 잡아도 되지만, 
+       깜빡임 방지를 위해 미리 내려두는 게 좋습니다. */
+    transform: translateY(110%); 
+}
+
+
+
+/* -------------------------------------------------- */
+
+
+
+.detail_section{
+  margin: 0 auto;
+  max-width: 100rem;
+}
+
+.video .detail_wrap {
+  pointer-events: none; /* 🔥 추가 */
+}
+
+
+
+.work .work_list .work_cont.video:hover .detail_wrap {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* 🔥 추가 */
+}
+
+
+.video_popup_inner {
+  position: fixed; /* 🔥 핵심 */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background: #000000e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 9999;
+}
+
+.video_popup_inner.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.video_popup_inner iframe,
+.video_popup_inner video {
+  width: 70%;
+  aspect-ratio: 16 /9 ;
+  display: none;
+  border-radius: 10px;
+}
+
+.close_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 991px) {
+header h1, footer h1 {
+    font-size: 21vw;}
+
+  header .nav {
+    margin: 0;
+}
+
+header .nav li a {
+    border:none;
+}
+
+.f_box .section_title{
+  width: 100%;
+}
+
+.f_box .content{
+  width: 100%;
+}
+
+.work .top_txt_wrap {
+    padding-left: 0%;
+}
+
+.work .work_list {
+    gap: 6rem 3rem;
+}
+
+.work .work_list .work_cont {
+    width:100%;
+    position: relative;
+    cursor: none !important;
+}
+
+.work .work_list .work_cont .product_info .product_name {
+    font-size: 2rem;}
+    .work .work_list .work_cont .product_info .tag {
+    gap: 0.5rem;
+}
+.work .work_list .work_cont .product_info .tag li {
+      font-size: 1.4rem;
+}
+.work .work_btn_wrap {
+    padding-left: 0%;
+    margin-top: 4rem;
+}
+.work .work_btn_wrap a{
+
+    font-size: 11.5vw;
+}
+
+.work .work_list .work_cont .product_img .detail_wrap li p {
+    font-size: 1.4rem;
+    width: 100%;
+}
+
+#contact .top_txt_wrap {
+    padding: 10rem 0 10rem ;
+}
+
+
+#about_me .content .number{
+  gap: 12%;
+}
+
+
+.custom_cursor {
+  width: 12rem;
+  height: 12rem;
+  margin-left: -7rem;
+  margin-top: -7rem;
+}
+
+
+/* [커서 화살표] 회전하지 않고 고정 */
+.cursor_arrow {
+  width: 1.5rem; 
+}
+
+
+}
+
+@media screen and (max-width: 540px){
+#about_me .content .txt_p .mo_none {
+  display: none;
+
+}
+
+
+
+
+}
