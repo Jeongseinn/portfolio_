@@ -433,7 +433,7 @@
 		</div>
 	</section>
 	<footer>
-		<h1 class="roboto">SEIN JEONG</h1>
+		<h1 class="roboto fade_up">SEIN JEONG</h1>
 	</footer>
 	<div class="video_popup_inner">
 		<button class="close_btn">✕</button>
@@ -450,143 +450,146 @@
 	</div>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 	<script>
-		// ScrollTrigger 등록
-		gsap.registerPlugin(ScrollTrigger);
+document.addEventListener("DOMContentLoaded", () => {
 
-		window.addEventListener("load", function () {
-			// 모든 .reveal-text 요소를 찾아서 애니메이션 적용
-			const targets = gsap.utils.toArray(".reveal-text");
+  /* =========================
+     ✅ GSAP (reveal + footer)
+  ========================= */
+  gsap.registerPlugin(ScrollTrigger);
 
-			targets.forEach((target) => {
-				gsap.to(target, {
-					y: 0, // 원래 위치로
-					duration: 1.2,
-					ease: "power4.out", // 고급스러운 느낌의 베지어 곡선
-					scrollTrigger: {
-						trigger: target,      // 애니메이션이 시작될 기준 요소
-						start: "top 90%",     // 요소의 상단이 화면의 90% 지점에 도달하면 시작
-						toggleActions: "play none none none", // 한 번만 실행
-						// markers: true,     // 테스트할 때 이 주석을 풀면 시작 지점이 화면에 표시됨
-					}
-				});
-			});
-		});
-	</script>
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const cursor = document.querySelector('.custom_cursor');
-			const workContents = document.querySelectorAll('.work_cont');
+  // 🔹 공통 reveal 애니메이션
+  const revealTargets = gsap.utils.toArray(".reveal-text");
 
-			// 1. 마우스 움직임 감지하여 커서 위치 이동
-			document.addEventListener('mousemove', (e) => {
-				const cursor = document.querySelector('.custom_cursor');
+  revealTargets.forEach((target) => {
+    gsap.to(target, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: target,
+        start: "top 90%",
+        toggleActions: "play none none none"
+      }
+    });
+  });
 
-				cursor.style.left = e.clientX + 'px';
-				cursor.style.top = e.clientY + 'px';
-			});
+  // 🔹 footer 전용 (fade_up)
+  gsap.to("footer .fade_up", {
+    y: 0,
+    opacity: 1,
+    duration: 1.5,
+    stagger: 0.15,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "footer",
+      start: "top 85%",
+      toggleActions: "play none none none"
+    }
+  });
 
-			// 2. 각 work_cont 영역에 들어오고 나갈 때 제어
-			workContents.forEach(cont => {
-				cont.addEventListener('mouseenter', () => {
-					cursor.classList.add('on'); // 커서 보이기
-				});
-				cont.addEventListener('mouseleave', () => {
-					cursor.classList.remove('on'); // 커서 숨기기
-				});
-			});
-		});
-	</script>
-	<script>
-		const items = document.querySelectorAll('.work_cont.video');
 
-		const popup = document.querySelector('.video_popup_inner');
-		const iframe = popup.querySelector('iframe');
-		const video = popup.querySelector('video');
-		const source = video.querySelector('source');
-		const closeBtn = popup.querySelector('.close_btn');
+  /* =========================
+     ✅ 커스텀 커서
+  ========================= */
+  const cursor = document.querySelector('.custom_cursor');
+  const workContents = document.querySelectorAll('.work_cont');
 
-		// 🔥 팝업 열기
-		items.forEach(item => {
-			item.addEventListener('click', (e) => {
-				e.preventDefault();
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
 
-				const type = item.dataset.type;
-				const srcData = item.dataset.video;
+  workContents.forEach(cont => {
+    cont.addEventListener('mouseenter', () => {
+      cursor.classList.add('on');
+    });
+    cont.addEventListener('mouseleave', () => {
+      cursor.classList.remove('on');
+    });
+  });
 
-				// 🔥 초기화 (중요)
-				iframe.style.display = 'none';
-				video.style.display = 'none';
 
-				iframe.src = "";
-				video.pause();
-				source.src = "";
-				video.load();
+  /* =========================
+     ✅ 비디오 팝업
+  ========================= */
+  const items = document.querySelectorAll('.work_cont.video');
 
-				// 🔥 타입 분기
-				if (type === 'youtube') {
-					iframe.src = srcData;
-					iframe.style.display = 'block';
-				} else {
-					source.src = srcData;
-					video.load();
-					video.style.display = 'block';
+  const popup = document.querySelector('.video_popup_inner');
+  const iframe = popup.querySelector('iframe');
+  const video = popup.querySelector('video');
+  const source = video.querySelector('source');
+  const closeBtn = popup.querySelector('.close_btn');
 
-					// 🔥 자동재생 + 소리 ON 시도
-					video.muted = false;
+  items.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
 
-					const playPromise = video.play();
+      const type = item.dataset.type;
+      const srcData = item.dataset.video;
 
-					if (playPromise !== undefined) {
-						playPromise.catch(() => {
-							// ❗ 자동재생 막히면 무음으로 fallback
-							video.muted = true;
-							video.play();
-						});
-					}
-				}
+      // 초기화
+      iframe.style.display = 'none';
+      video.style.display = 'none';
+      iframe.src = "";
+      video.pause();
+      source.src = "";
+      video.load();
 
-				popup.classList.add('active');
+      // 타입 분기
+      if (type === 'youtube') {
+        iframe.src = srcData;
+        iframe.style.display = 'block';
+      } else {
+        source.src = srcData;
+        video.load();
+        video.style.display = 'block';
 
-				// 🔥 스크롤 막기
-				document.body.style.overflow = 'hidden';
-			});
-		});
+        video.muted = false;
 
-		// 🔥 닫기 버튼
-		closeBtn.addEventListener('click', closePopup);
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            video.muted = true;
+            video.play();
+          });
+        }
+      }
 
-		// 🔥 배경 클릭 시 닫기
-		popup.addEventListener('click', closePopup);
+      popup.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
 
-		// 🔥 영상 클릭 시 닫힘 방지
-		iframe.addEventListener('click', e => e.stopPropagation());
-		video.addEventListener('click', e => e.stopPropagation());
+  function closePopup() {
+    popup.classList.remove('active');
 
-		// 🔥 영상 클릭 시 소리 켜기 (UX 보완)
-		video.addEventListener('click', () => {
-			video.muted = false;
-		});
+    iframe.src = "";
+    video.pause();
+    source.src = "";
+    video.load();
 
-		// 🔥 ESC로 닫기
-		document.addEventListener('keydown', (e) => {
-			if (e.key === 'Escape') {
-				closePopup();
-			}
-		});
+    document.body.style.overflow = '';
+  }
 
-		// 🔥 공통 닫기 함수
-		function closePopup() {
-			popup.classList.remove('active');
+  closeBtn.addEventListener('click', closePopup);
+  popup.addEventListener('click', closePopup);
 
-			iframe.src = "";
-			video.pause();
-			source.src = "";
-			video.load();
+  iframe.addEventListener('click', e => e.stopPropagation());
+  video.addEventListener('click', e => e.stopPropagation());
 
-			document.body.style.overflow = '';
-		}
-	</script>
-<script>
+  video.addEventListener('click', () => {
+    video.muted = false;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closePopup();
+  });
+
+
+  /* =========================
+     ✅ 네비 fixed
+  ========================= */
   const nav = document.querySelector('.nav');
   const navTop = nav.offsetTop;
 
@@ -597,6 +600,8 @@
       nav.classList.remove('fixed');
     }
   });
+
+});
 </script>
 </body>
 
