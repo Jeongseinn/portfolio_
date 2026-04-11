@@ -629,8 +629,6 @@ header .nav li a {
 
 .work .work_list .work_cont {
     width:100%;
-    position: relative;
-    cursor: none !important;
 }
 
 .work .work_list .work_cont .product_info .product_name {
@@ -735,5 +733,9 @@ header .nav li a {
   width: 95%;
   border-radius: 0px;
 }
+
+	    .work .work_list .work_cont {
+        cursor: pointer !important;
+    }
 
 }
