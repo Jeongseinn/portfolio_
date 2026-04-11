@@ -663,6 +663,8 @@
 		<div class="cursor_bg"> <img src="../img/cursor_bg.png" alt="커서"></div>
 		<div class="cursor_arrow"> <img src="../img/cursor.png" alt="커서"></div>
 	</div>
+
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -679,9 +681,9 @@ document.addEventListener('DOMContentLoaded', () => {
     stagger: 0.15,
     ease: "power3.out",
     scrollTrigger: {
-     trigger: document.body,
-    start: "bottom 90%", // 페이지 거의 끝에서 실행
-    toggleActions: "play none none none"
+      trigger: "footer",
+      start: "top 85%",
+      toggleActions: "play none none none"
     }
   });
 
