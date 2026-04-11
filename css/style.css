@@ -701,4 +701,19 @@ header .nav li a {
 }
 
 
+.custom_cursor_bg {
+ opacity: 0;
+}
+
+
+/* [커서 화살표] 회전하지 않고 고정 */
+.cursor_arrow {
+ opacity: 0;
+}
+
+    .work .work_list .work_cont .product_img .detail_wrap li p {
+        font-size: 1.2rem;}
+
+
+
 }
