@@ -600,7 +600,8 @@ line-height: 1;
 
 @media screen and (max-width: 991px) {
 header h1, footer h1 {
-    font-size: 21vw;}
+    font-size: 21vw;
+  text-align: center;}
 
   header .nav {
     padding: 0;
@@ -647,6 +648,10 @@ header .nav li a {
 .work .work_btn_wrap a{
 
     font-size: 11.5vw;
+}
+
+.work .work_list .work_cont .detail_wrap {
+    padding: 1rem;
 }
 
 .work .work_list .work_cont .product_img .detail_wrap li p {
@@ -701,12 +706,15 @@ header .nav li a {
 }
 
 
-.custom_cursor_bg {
+.custom_cursor {
+ opacity: 0;
+}
+
+.cursor_bg{
  opacity: 0;
 }
 
 
-/* [커서 화살표] 회전하지 않고 고정 */
 .cursor_arrow {
  opacity: 0;
 }
@@ -714,6 +722,12 @@ header .nav li a {
     .work .work_list .work_cont .product_img .detail_wrap li p {
         font-size: 1.2rem;}
 
+#contact p.txt_p{
+  font-size: 1.6rem;
+}
 
+.number_t{
+  font-size: 1.4rem;
+}
 
 }
