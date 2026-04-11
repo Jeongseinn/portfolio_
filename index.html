@@ -27,7 +27,16 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <script src="./js/SmoothScroll.js"></script>
-
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  SmoothScroll({
+    animationTime: 500,
+    stepSize: 120,
+    accelerationDelta: 50,
+    accelerationMax: 2,
+  });
+});
+</script>
 </head>
 
 <body class="index_wrap">
@@ -448,6 +457,7 @@
 		<div class="cursor_bg"> <img src="./img/cursor_bg.png" alt="커서"></div>
 		<div class="cursor_arrow"> <img src="./img/cursor.png" alt="커서"></div>
 	</div>
+	
 	<script>
 document.addEventListener("DOMContentLoaded", () => {
 
