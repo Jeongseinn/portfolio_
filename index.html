@@ -465,36 +465,34 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
   // 🔹 공통 reveal 애니메이션
-  const revealTargets = gsap.utils.toArray(".reveal-text");
+const revealTargets = gsap.utils.toArray(".reveal-text");
 
-  revealTargets.forEach((target) => {
-gsap.to(target, {
-  y: 0,
-  opacity: 1,
-  duration: 1.2,
-  ease: "power4.out",
-  immediateRender: true, // ✅ 추가
-  scrollTrigger: {
-    trigger: target,
-    start: "top 100%",
-    toggleActions: "play none none none"
+revealTargets.forEach((target, i) => {
+
+  // ✅ 첫 번째 요소는 바로 실행
+  if (i === 0) {
+    gsap.to(target, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power4.out"
+    });
+  } else {
+    // ✅ 나머지는 ScrollTrigger
+    gsap.to(target, {
+      y: 0,
+      opacity: 1,
+      duration: 1.2,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: target,
+        start: "top 100%",
+        toggleActions: "play none none none"
+      }
+    });
   }
-});
-  });
 
-  // 🔹 footer 전용 (fade_up)
-  gsap.to("footer .fade_up", {
-    y: 0,
-    opacity: 1,
-    duration: 1.5,
-    stagger: 0.15,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: "footer",
-      start: "top 85%",
-      toggleActions: "play none none none"
-    }
-  });
+});
 
 
   /* =========================
