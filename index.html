@@ -464,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ========================= */
   gsap.registerPlugin(ScrollTrigger);
 
-  // 🔹 공통 reveal 애니메이션
+// 🔹 공통 reveal 애니메이션
 const revealTargets = gsap.utils.toArray(".reveal-text");
 
 revealTargets.forEach((target, i) => {
@@ -493,6 +493,20 @@ revealTargets.forEach((target, i) => {
   }
 
 });
+
+  // 🔹 footer 전용 (fade_up)
+  gsap.to("footer .fade_up", {
+    y: 0,
+    opacity: 1,
+    duration: 1.5,
+    stagger: 0.15,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "footer",
+      start: "top 85%",
+      toggleActions: "play none none none"
+    }
+  });
 
 
   /* =========================
