@@ -730,4 +730,10 @@ header .nav li a {
   font-size: 1.4rem;
 }
 
+	.video_popup_inner iframe,
+.video_popup_inner video {
+  width: 95%;
+  border-radius: 0px;
+}
+
 }
