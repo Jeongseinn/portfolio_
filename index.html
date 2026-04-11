@@ -468,17 +468,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const revealTargets = gsap.utils.toArray(".reveal-text");
 
   revealTargets.forEach((target) => {
-    gsap.to(target, {
-      y: 0,
-      opacity: 1,
-      duration: 1.2,
-      ease: "power4.out",
-      scrollTrigger: {
-        trigger: target,
-        start: "top 100%",
-        toggleActions: "play none none none"
-      }
-    });
+gsap.to(target, {
+  y: 0,
+  opacity: 1,
+  duration: 1.2,
+  ease: "power4.out",
+  immediateRender: true, // ✅ 추가
+  scrollTrigger: {
+    trigger: target,
+    start: "top 100%",
+    toggleActions: "play none none none"
+  }
+});
   });
 
   // 🔹 footer 전용 (fade_up)
