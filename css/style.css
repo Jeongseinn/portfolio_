@@ -462,7 +462,7 @@ align-items: stretch;
   right: 0.5rem;
 }
 
-#cando .content li:nth-child(odd){opacity: 0.7;}
+#cando .content li:nth-child(even){opacity: 0.7;}
 
 #experience table td{
   border-bottom: 1px solid #ffffff12;
